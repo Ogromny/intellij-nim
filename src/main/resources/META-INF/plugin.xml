@@ -1,0 +1,21 @@
+<idea-plugin url="https://github.com/Ogromny/intellij-nim">
+    <name>Intellij-nim</name>
+
+    <id>ru.nim.lang</id>
+
+    <description>Nim Language support for Jetbrains products</description>
+
+    <change-notes>Initial release of intellij-nim (0.0.1).</change-notes>
+
+    <version>0.0.1</version>
+
+    <vendor url="https://github.com/Ogromny/intellij-nim" email="ogromnycoding@gmail.com">Ogromny</vendor>
+
+    <depends>com.intellij.modules.lang</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileTypeFactory implementation="ru.nim.NimFileTypeFactory"/>
+        <lang.parserDefinition language="Nim" implementationClass="ru.nim.NimParserDefinition"/>
+        <lang.syntaxHighlighterFactory language="Nim" implementationClass="ru.nim.NimSyntaxHighlighterFactory"/>z
+    </extensions>
+</idea-plugin>

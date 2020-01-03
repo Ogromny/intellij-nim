@@ -1,0 +1,21 @@
+{
+    /* TODO: https://github.com/JetBrains/Grammar-Kit/tree/master/resources/messages/attributeDescriptions */
+    parserClass="ru.nim.parser.NimParser"
+
+    extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+    psiClassPrefix="Nim"
+    psiImplClassSuffix="Impl"
+    psiPackage="ru.nim.psi"
+    psiImplPackage="ru.nim.psi.impl"
+
+    elementTypeHolderClass="ru.nim.psi.NimTypes"
+    elementTypeClass="ru.nim.psi.NimElementType"
+    tokenTypeClass="ru.nim.psi.NimTokenType"
+}
+
+//nimFile ::= (proc|COMMENT|NEW_LINE)*
+nimFile ::= (proc|COMMENT|BLOCK_COMMENT|NEW_LINE)*
+
+proc ::= KW_PROC ":"
+//proc ::= KW_PROC IDENTIFIER ":" NEW_LINE? STR_LIT
