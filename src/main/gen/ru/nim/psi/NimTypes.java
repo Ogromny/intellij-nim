@@ -14,6 +14,7 @@ public interface NimTypes {
   IElementType COMMENT = new NimTokenType("COMMENT");
   IElementType KW_PROC = new NimTokenType("KW_PROC");
   IElementType NEW_LINE = new NimTokenType("NEW_LINE");
+  IElementType TRIPLESTR_LIT = new NimTokenType("TRIPLESTR_LIT");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {

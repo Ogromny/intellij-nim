@@ -54,8 +54,9 @@ class NimLexer implements FlexLexer {
 
   /* The ZZ_CMAP_A table has 256 entries */
   static final char ZZ_CMAP_A[] = zzUnpackCMap(
-    "\11\0\1\2\1\1\1\0\1\2\1\1\22\0\1\2\2\0\1\6\67\0\1\7\1\0\1\11\5\0\1\5\13\0"+
-    "\1\10\1\3\1\0\1\4\215\0");
+    "\11\0\1\2\1\1\1\0\1\2\1\1\22\0\1\2\1\0\1\4\1\17\3\0\1\11\10\0\12\3\7\0\6\13"+
+    "\24\0\1\20\1\5\1\22\3\0\2\3\1\10\1\13\2\3\5\0\1\11\1\0\1\11\1\21\1\6\1\0\1"+
+    "\7\1\0\1\11\1\14\1\11\1\0\1\12\2\0\1\15\1\0\1\16\202\0");
 
   /** 
    * Translates DFA states to action switch labels.
@@ -63,11 +64,12 @@ class NimLexer implements FlexLexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\2\0\1\1\1\2\1\3\1\1\1\4\2\5\1\0"+
-    "\1\4\1\6\1\7\1\10\1\0\1\11";
+    "\2\0\1\1\1\2\1\3\2\1\1\4\2\5\2\0"+
+    "\1\4\1\6\1\7\1\10\4\0\1\11\3\0\1\12"+
+    "\3\0\1\12\1\0\1\12\7\0";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[16];
+    int [] result = new int[38];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -92,11 +94,14 @@ class NimLexer implements FlexLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\12\0\24\0\36\0\50\0\62\0\74\0\24"+
-    "\0\106\0\120\0\132\0\24\0\24\0\24\0\144\0\24";
+    "\0\0\0\23\0\46\0\71\0\114\0\137\0\162\0\205"+
+    "\0\46\0\230\0\253\0\276\0\321\0\46\0\46\0\46"+
+    "\0\344\0\367\0\u010a\0\u011d\0\46\0\u0130\0\u0143\0\u0156"+
+    "\0\u0169\0\u017c\0\u018f\0\u01a2\0\u01b5\0\u01c8\0\46\0\u01db"+
+    "\0\u01ee\0\u0201\0\u0214\0\u0227\0\u023a\0\u024d";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[16];
+    int [] result = new int[38];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -119,14 +124,29 @@ class NimLexer implements FlexLexer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\3\1\4\1\5\1\6\2\3\1\7\3\3\6\10"+
-    "\1\11\3\10\13\0\1\4\12\0\1\5\13\0\1\12"+
-    "\5\0\1\13\1\0\5\13\1\14\2\13\7\0\1\15"+
-    "\1\0\1\16\10\0\1\17\1\0\1\13\1\0\5\13"+
-    "\1\0\2\13\5\0\1\20\4\0";
+    "\1\3\1\4\1\5\1\3\1\6\1\3\1\7\10\3"+
+    "\1\10\3\3\17\11\1\12\3\11\24\0\1\4\23\0"+
+    "\1\5\24\0\1\13\25\0\1\14\13\0\1\15\1\0"+
+    "\16\15\1\16\2\15\20\0\1\17\1\0\1\20\4\0"+
+    "\1\21\37\0\1\22\1\0\1\15\1\0\16\15\1\0"+
+    "\2\15\4\21\1\23\1\24\15\21\10\0\1\25\12\0"+
+    "\4\21\1\26\16\21\3\0\7\21\1\27\1\0\1\30"+
+    "\6\0\4\21\1\31\16\21\3\0\1\32\4\0\1\32"+
+    "\2\0\1\32\12\0\1\33\4\0\1\33\2\0\1\33"+
+    "\1\0\1\34\11\0\1\35\21\0\1\21\4\0\1\21"+
+    "\2\0\1\21\12\0\1\27\4\0\1\27\2\0\1\27"+
+    "\12\0\1\36\4\0\1\36\2\0\1\36\13\0\1\37"+
+    "\21\0\1\40\4\0\1\40\2\0\1\40\2\0\1\21"+
+    "\7\0\1\41\4\0\1\41\2\0\1\41\2\0\1\21"+
+    "\7\0\1\42\4\0\1\42\2\0\1\42\2\0\1\21"+
+    "\7\0\1\43\4\0\1\43\2\0\1\43\2\0\1\21"+
+    "\7\0\1\44\4\0\1\44\2\0\1\44\2\0\1\21"+
+    "\7\0\1\45\4\0\1\45\2\0\1\45\2\0\1\21"+
+    "\7\0\1\46\4\0\1\46\2\0\1\46\2\0\1\21"+
+    "\22\0\1\21\4\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[110];
+    int [] result = new int[608];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -164,11 +184,12 @@ class NimLexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\2\0\1\11\4\1\1\11\1\1\1\0\1\1\3\11"+
-    "\1\0\1\11";
+    "\2\0\1\11\5\1\1\11\1\1\2\0\1\1\3\11"+
+    "\4\0\1\11\3\0\1\1\3\0\1\1\1\0\1\11"+
+    "\7\0";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[16];
+    int [] result = new int[38];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -471,7 +492,7 @@ class NimLexer implements FlexLexer {
             case STATE_BLOCK_COMMENT: {
               yybegin(YYINITIAL); return NimTypes.BLOCK_COMMENT;
             }  // fall though
-            case 17: break;
+            case 39: break;
             default:
         return null;
         }
@@ -482,47 +503,52 @@ class NimLexer implements FlexLexer {
             { return TokenType.BAD_CHARACTER;
             } 
             // fall through
-          case 10: break;
+          case 11: break;
           case 2: 
             { return NimTypes.NEW_LINE;
             } 
             // fall through
-          case 11: break;
+          case 12: break;
           case 3: 
             { return TokenType.WHITE_SPACE;
             } 
             // fall through
-          case 12: break;
+          case 13: break;
           case 4: 
             { return NimTypes.COMMENT;
             } 
             // fall through
-          case 13: break;
+          case 14: break;
           case 5: 
             { 
             } 
             // fall through
-          case 14: break;
+          case 15: break;
           case 6: 
             { block_comment_depth = 0; yypushback(2); yybegin(STATE_BLOCK_COMMENT);
             } 
             // fall through
-          case 15: break;
+          case 16: break;
           case 7: 
             { block_comment_depth++;
             } 
             // fall through
-          case 16: break;
+          case 17: break;
           case 8: 
             { if (--block_comment_depth == 0) {yybegin(YYINITIAL); zzStartRead = -1; return NimTypes.BLOCK_COMMENT;}
             } 
             // fall through
-          case 17: break;
+          case 18: break;
           case 9: 
             { return NimTypes.KW_PROC;
             } 
             // fall through
-          case 18: break;
+          case 19: break;
+          case 10: 
+            { return NimTypes.TRIPLESTR_LIT;
+            } 
+            // fall through
+          case 20: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }

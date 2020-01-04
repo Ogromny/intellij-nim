@@ -25,7 +25,7 @@ DIGIT = [0-9]
 IDENTIFIER = {LETTER} ("_"? ({LETTER} | {DIGIT}))*
 
 STR_LIT = \" ([^\\\"]|((\\p)|(\\r)|(\\c)|(\\n)|(\\n)|(\\l)|(\\f)|(\\t)|(\\v)|(\\\\)|(\\\")|(\\\')|(\\[0-9])|(\\a)|(\\b)|(\\e)|(\\x[0-9A-Fa-f]{2,2})|(\\u[0-9A-Fa-f]{4,4})|(\\u\{[0-9A-Fa-f]{1,8}\})))* \"
-
+TRIPLESTR_LIT = \"\"\" ([^\\\"]|((\"\"[^\"])|(\"[^\"])|(\\p)|(\\r)|(\\c)|(\\n)|(\\n)|(\\l)|(\\f)|(\\t)|(\\v)|(\\\\)|(\\\")|(\\\')|(\\[0-9])|(\\a)|(\\b)|(\\e)|(\\x[0-9A-Fa-f]{2,2})|(\\u[0-9A-Fa-f]{4,4})|(\\u\{[0-9A-Fa-f]{1,8}\})))* (\")? (\")? \"\"\"
 COMMENT = \#[^\r\n\[]*
 
 %state STATE_BLOCK_COMMENT
@@ -34,9 +34,13 @@ COMMENT = \#[^\r\n\[]*
 
 <YYINITIAL> {
     {WHITE_SPACE}+              {return TokenType.WHITE_SPACE;}
+    {NEW_LINE}+                 {return NimTypes.NEW_LINE;}
+
     "#["                        {block_comment_depth = 0; yypushback(2); yybegin(STATE_BLOCK_COMMENT);}
     {COMMENT}                   {return NimTypes.COMMENT;}
-    {NEW_LINE}+                 {return NimTypes.NEW_LINE;}
+
+    {TRIPLESTR_LIT}             {return NimTypes.TRIPLESTR_LIT;}
+
     "proc"                      {return NimTypes.KW_PROC;}
 }
 <STATE_BLOCK_COMMENT> {
