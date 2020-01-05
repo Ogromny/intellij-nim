@@ -6,6 +6,7 @@ Nim support for Jetbrains IDE
 - [x] **string**
 - [x] triple quoted **string**
 - [x] raw **string**
+- [x] **numeric**
 
 
 ## Todo

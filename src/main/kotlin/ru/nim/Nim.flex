@@ -29,6 +29,37 @@ TRIPLESTR_LIT = \"\"\" ([^\\\"]|((\"\"[^\"])|(\"[^\"])|(\\p)|(\\r)|(\\c)|(\\n)|(
 RSTR_LIT = (r|R)\" ([^\\\"]|((\"\"[^\"])|(\\p)|(\\r)|(\\c)|(\\n)|(\\n)|(\\l)|(\\f)|(\\t)|(\\v)|(\\\\)|(\\\")|(\\\')|(\\[0-9])|(\\a)|(\\b)|(\\e)|(\\x[0-9A-Fa-f]{2,2})|(\\u[0-9A-Fa-f]{4,4})|(\\u\{[0-9A-Fa-f]{1,8}\})))* (\"\")? \"
 COMMENT = \#[^\r\n\[]*
 
+HEXDIGIT = {DIGIT} | [A-F] | [a-f]
+OCTDIGIT = [0-7]
+BINDIGIT = [0-1]
+
+HEX_LIT = 0 (x|X) {HEXDIGIT} ("_"? {HEXDIGIT})*
+DEC_LIT = {DIGIT} ("_"? {DIGIT})*
+OCT_LIT = 0 o {OCTDIGIT} ("_"? {OCTDIGIT})*
+BIN_LIT = 0 (b|B) {BINDIGIT} ("_"? {BINDIGIT})*
+
+INT_LIT = {HEX_LIT} | {DEC_LIT} | {OCT_LIT} | {BIN_LIT}
+
+INT8_LIT = {INT_LIT} \' (i|I) 8
+INT16_LIT = {INT_LIT} \' (i|I) 16
+INT32_LIT = {INT_LIT} \' (i|I) 32
+INT64_LIT = {INT_LIT} \' (i|I) 64
+
+UINT_LIT = {INT_LIT} \' (u|U)
+UINT8_LIT = {INT_LIT} \' (u|U) 8
+UINT16_LIT = {INT_LIT} \' (u|U) 16
+UINT32_LIT = {INT_LIT} \' (u|U) 32
+UINT64_LIT = {INT_LIT} \' (u|U) 64
+
+EXPONENT = (e|E) ("+"|"-")? {DIGIT} ("_"? {DIGIT})*
+FLOAT_LIT = {DIGIT} ("_"? {DIGIT})* (("." {DIGIT} ("_"? {DIGIT})* {EXPONENT}?) | {EXPONENT})
+
+FLOAT32_SUFFIX = (f|F) "32"?
+FLOAT32_LIT = ({HEX_LIT} \' {FLOAT32_SUFFIX}) | (({FLOAT_LIT}|{DEC_LIT}|{OCT_LIT}|{BIN_LIT}) \'? {FLOAT32_SUFFIX})
+
+FLOAT64_SUFFIX = ((f|F) 64)|d|D
+FLOAT64_LIT = ({HEX_LIT} \' {FLOAT64_SUFFIX}) | (({FLOAT_LIT}|{DEC_LIT}|{OCT_LIT}|{BIN_LIT}) \'? {FLOAT64_SUFFIX})
+
 %state STATE_BLOCK_COMMENT
 
 %%
@@ -40,8 +71,27 @@ COMMENT = \#[^\r\n\[]*
     "#["                        {block_comment_depth = 0; yypushback(2); yybegin(STATE_BLOCK_COMMENT);}
     {COMMENT}                   {return NimTypes.COMMENT;}
 
+    {STR_LIT}                   {return NimTypes.STR_LIT;}
     {TRIPLESTR_LIT}             {return NimTypes.TRIPLESTR_LIT;}
     {RSTR_LIT}                  {return NimTypes.RSTR_LIT;}
+
+    {HEX_LIT}                   {return NimTypes.HEX_LIT;}
+    {DEC_LIT}                   {return NimTypes.DEC_LIT;}
+    {OCT_LIT}                   {return NimTypes.OCT_LIT;}
+    {BIN_LIT}                   {return NimTypes.BIN_LIT;}
+
+    {INT8_LIT}                  {return NimTypes.INT8_LIT;}
+    {INT16_LIT}                 {return NimTypes.INT16_LIT;}
+    {INT32_LIT}                 {return NimTypes.INT32_LIT;}
+    {INT64_LIT}                 {return NimTypes.INT64_LIT;}
+    {UINT_LIT}                  {return NimTypes.UINT_LIT;}
+    {UINT8_LIT}                 {return NimTypes.UINT8_LIT;}
+    {UINT16_LIT}                {return NimTypes.UINT16_LIT;}
+    {UINT32_LIT}                {return NimTypes.UINT32_LIT;}
+    {UINT64_LIT}                {return NimTypes.UINT64_LIT;}
+    {FLOAT_LIT}                 {return NimTypes.FLOAT_LIT;}
+    {FLOAT32_LIT}               {return NimTypes.FLOAT32_LIT;}
+    {FLOAT64_LIT}               {return NimTypes.FLOAT64_LIT;}
 
     "proc"                      {return NimTypes.KW_PROC;}
 }
