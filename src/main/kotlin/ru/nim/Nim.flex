@@ -26,6 +26,7 @@ IDENTIFIER = {LETTER} ("_"? ({LETTER} | {DIGIT}))*
 
 STR_LIT = \" ([^\\\"]|((\\p)|(\\r)|(\\c)|(\\n)|(\\n)|(\\l)|(\\f)|(\\t)|(\\v)|(\\\\)|(\\\")|(\\\')|(\\[0-9])|(\\a)|(\\b)|(\\e)|(\\x[0-9A-Fa-f]{2,2})|(\\u[0-9A-Fa-f]{4,4})|(\\u\{[0-9A-Fa-f]{1,8}\})))* \"
 TRIPLESTR_LIT = \"\"\" ([^\\\"]|((\"\"[^\"])|(\"[^\"])|(\\p)|(\\r)|(\\c)|(\\n)|(\\n)|(\\l)|(\\f)|(\\t)|(\\v)|(\\\\)|(\\\")|(\\\')|(\\[0-9])|(\\a)|(\\b)|(\\e)|(\\x[0-9A-Fa-f]{2,2})|(\\u[0-9A-Fa-f]{4,4})|(\\u\{[0-9A-Fa-f]{1,8}\})))* (\")? (\")? \"\"\"
+RSTR_LIT = (r|R)\" ([^\\\"]|((\"\"[^\"])|(\\p)|(\\r)|(\\c)|(\\n)|(\\n)|(\\l)|(\\f)|(\\t)|(\\v)|(\\\\)|(\\\")|(\\\')|(\\[0-9])|(\\a)|(\\b)|(\\e)|(\\x[0-9A-Fa-f]{2,2})|(\\u[0-9A-Fa-f]{4,4})|(\\u\{[0-9A-Fa-f]{1,8}\})))* (\"\")? \"
 COMMENT = \#[^\r\n\[]*
 
 %state STATE_BLOCK_COMMENT
@@ -40,6 +41,7 @@ COMMENT = \#[^\r\n\[]*
     {COMMENT}                   {return NimTypes.COMMENT;}
 
     {TRIPLESTR_LIT}             {return NimTypes.TRIPLESTR_LIT;}
+    {RSTR_LIT}                  {return NimTypes.RSTR_LIT;}
 
     "proc"                      {return NimTypes.KW_PROC;}
 }

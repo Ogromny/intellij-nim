@@ -15,7 +15,7 @@
 }
 
 //nimFile ::= (proc|COMMENT|NEW_LINE)*
-nimFile ::= (proc|COMMENT|BLOCK_COMMENT|NEW_LINE|TRIPLESTR_LIT)*
+nimFile ::= (proc|COMMENT|BLOCK_COMMENT|NEW_LINE|TRIPLESTR_LIT|RSTR_LIT)*
 
 // Just for test
 proc ::= KW_PROC ":"

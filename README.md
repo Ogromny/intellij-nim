@@ -5,13 +5,14 @@ Nim support for Jetbrains IDE
 - [x] **comment** support
 - [x] **string**
 - [x] triple quoted **string**
+- [x] raw **string**
 
 
 ## Todo
 - [ ] Rest of **parser** and **lexer**
 - [ ] [Identifier equality](https://nim-lang.org/docs/manual.html#lexical-analysis-identifier-equality)
-- [ ] raw **string**
 - [ ] Syntax **highlighter**
+- [ ] Generalized raw string literal
 
 ## Milestones
 ### 0.1
